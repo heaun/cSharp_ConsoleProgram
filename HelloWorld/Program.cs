@@ -12,6 +12,16 @@ namespace HelloWorld
             Console.WriteLine("hello:) Main() ");
             string strMsg = "string messag";
             HelloWorld.Program.MsgWrite(strMsg);
+
+            if (args.Length != 0)
+            {
+                Console.WriteLine("hello? {0} !! ", args[0]);
+            }
+            else
+            {
+                Console.WriteLine("please write your name... ");
+            }
+
         }
 
         public static void MsgWrite(string msg) {
