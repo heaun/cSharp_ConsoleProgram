@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace CmdLine
+{
+    class CmdLineClass
+    { 
+        static void Main(string[] args)
+        {
+            string strRead;
+            int i = 0;
+            Console.WriteLine("name -> ");
+            strRead = Console.ReadLine();
+
+            while (strRead.Length != 0) {
+                i++;
+                Console.WriteLine("hello {0}", strRead + "!!");
+                Console.WriteLine("{0}", i.ToString() + "th");
+                Console.WriteLine("exit : q");
+
+                Console.WriteLine("input your name -> ");
+                strRead = Console.ReadLine();
+
+                if (strRead == "q")
+                {
+                    break;
+                }
+            } 
+        }
+
+        public static void MsgWrite(string msg) {
+            Console.WriteLine("param : " + msg); 
+        }
+    } 
+}
