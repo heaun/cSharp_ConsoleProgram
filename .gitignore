@@ -47,4 +47,6 @@ Temporary Items
 .apdisk
 HelloWorld/bin/*
 HelloWorld/obj/*
+HelloWorld/*.exe
 notepad/*
+*.suo
