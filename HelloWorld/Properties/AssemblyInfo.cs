@@ -5,6 +5,11 @@ using System.Runtime.InteropServices;
 // 어셈블리의 일반 정보는 다음 특성 집합을 통해 제어됩니다.
 // 어셈블리와 관련된 정보를 수정하려면
 // 이 특성 값을 변경하십시오.
+/**
+ * 닷넷 프레임워크 오브젝트 호출 방식은 SOAP (Small Object Access Protocol)에 의한 Assembly 공개 키 토큰 호출 방식
+ * Assembley Attribute 정보를 가지고있는 부분이다. 
+ * 개발자가 코딩해줘야하는 부분
+ */
 [assembly: AssemblyTitle("HelloWorld")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -24,10 +29,10 @@ using System.Runtime.InteropServices;
 
 // 어셈블리의 버전 정보는 다음 네 가지 값으로 구성됩니다.
 //
-//      주 버전
-//      부 버전 
-//      빌드 번호
-//      수정 버전
+//      주 버전 (Major Version)
+//      부 버전 (Minor Version)
+//      빌드 번호 (Build Version)
+//      수정 버전 (Revision)
 //
 // 모든 값을 지정하거나 아래와 같이 '*'를 사용하여 빌드 번호 및 수정 버전이 자동으로
 // 지정되도록 할 수 있습니다.
