@@ -42,10 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallOtherClassMethod.cs" />
     <Compile Include="ConsoleLineRead.cs" />
     <Compile Include="DateDisplay.cs" />
+    <Compile Include="GetSetProperty.cs" />
+    <Compile Include="ObjCompare.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsingArray.cs" />
+    <Compile Include="UsingStructAndClass.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
