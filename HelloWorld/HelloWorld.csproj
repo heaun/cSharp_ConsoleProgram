@@ -46,6 +46,7 @@
     <Compile Include="ConsoleLineRead.cs" />
     <Compile Include="DateDisplay.cs" />
     <Compile Include="FileRead.cs" />
+    <Compile Include="FileWrite.cs" />
     <Compile Include="GetSetProperty.cs" />
     <Compile Include="main.cs" />
     <Compile Include="ObjCompare.cs" />

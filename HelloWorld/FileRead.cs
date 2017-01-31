@@ -22,7 +22,7 @@ namespace HelloWorld
             string pathway = Environment.CurrentDirectory;
             Console.WriteLine("pathway : {0}", pathway);
 
-            ReadFileListInProject();
+            ReadFileListInProject(@"D:\3.Source\ConsoleProgram\HelloWorld\");
             Console.WriteLine("========================================");
             ReadFile_0(myFile1);
      //       ReadFile_1(myFile1, MyEncode);
@@ -53,10 +53,10 @@ namespace HelloWorld
             Console.WriteLine("Press any key to exit.");
             System.Console.ReadKey();
         }
-        private static void ReadFileListInProject() {
-            Console.WriteLine("This program lists all the files in the directory:");
+        public void ReadFileListInProject(String path) {
+            Console.WriteLine("This program lists all the files in the directory: " + path);
 
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"D:\3.Source\ConsoleProgram\HelloWorld\");
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
 
             foreach (System.IO.FileInfo file in dir.GetFiles("*.*"))
             {

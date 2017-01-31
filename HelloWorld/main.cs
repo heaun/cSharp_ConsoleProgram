@@ -52,9 +52,13 @@ namespace HelloWorld
                         clr.ConsoleLineReadMain();
                         break;
                     case "8":
-                        FileRead f = new FileRead();
-                        f.FileReadMain();
+                        FileRead fr = new FileRead();
+                        fr.FileReadMain();
                         break;
+                    case "9":
+                        FileWrite fw = new FileWrite();
+                        fw.FileWriteMain();
+                         break;
                     case "q":
                         Console.WriteLine("end");
                         return;
