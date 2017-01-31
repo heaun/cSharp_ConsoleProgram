@@ -1,0 +1,4 @@
+﻿중간 | 게시 날짜:25 November 2015
+C# 프로그래밍(Programming in C#) 점프 스타트
+이 과정은 .Net 프레임워크를 위한 매니지드 C 스타일의 언어인 C#을 다룹니다. 이 세션은 일반적인 점프 스타트 방식으로 흥미롭고 데모로 가득 찬 세션이 될 것입니다.
+https://mva.microsoft.com/ko/training-courses/c-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-programming-in-c-%EC%A0%90%ED%94%84-%EC%8A%A4%ED%83%80%ED%8A%B8-14254?l=oXMYDTMkB_9600115888
