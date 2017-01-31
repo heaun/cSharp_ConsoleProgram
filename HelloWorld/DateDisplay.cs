@@ -9,7 +9,7 @@ namespace HelloWorld
     {
         enum TYPE { DATETIME, DATE, TIME, DAYOFWEEK }
 
-        public static void Main(string[] args)
+        public void printData(string[] args)
         {
 
             DateTime curDate = DateTime.Now;
@@ -42,7 +42,7 @@ namespace HelloWorld
 
         }
 
-        private static void printDateTime(TYPE type, string strDate)
+        private void printDateTime(TYPE type, string strDate)
         {
             string strMessage = string.Empty;
             switch (type)

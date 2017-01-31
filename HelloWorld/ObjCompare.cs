@@ -7,7 +7,8 @@ namespace HelloWorld
 {
     class ObjCompare
     {
-        public static void Main(string[] args) {
+        public void ObjCompareMain()
+        {
             string strBuffer, strCompare;
             bool strTureFalse = false;
 

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace CmdLine
 {
-    class CmdLineClass
-    { 
-        static void Main(string[] args)
+    class ConsoleLineRead
+    {
+        public void ConsoleLineReadMain()
         {
             string strRead;
             int i = 0;
@@ -30,7 +30,7 @@ namespace CmdLine
             } 
         }
 
-        public static void MsgWrite(string msg) {
+        private void MsgWrite(string msg) {
             Console.WriteLine("param : " + msg); 
         }
     } 

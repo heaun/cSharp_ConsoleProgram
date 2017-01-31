@@ -92,9 +92,9 @@ namespace HelloWorld
             }
         }//DisplayAttributes
 
-        class GetSetMainClass
+        public class GetSetMainClass
         {
-            static void Main(string[] args)
+            internal void printAttribute(string[] args)
             {
                 CustomInfo myCustom = new CustomInfo("홍길동");
                 myCustom.p_code = "K12345";
@@ -115,5 +115,7 @@ namespace HelloWorld
                 Console.WriteLine("===클래스 DisplayAttributes에서의 출력 끝 ===");
             }
         }
+
+       
     }
 }

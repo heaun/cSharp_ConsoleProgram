@@ -7,11 +7,11 @@ namespace HelloWorld
 {
     class Program
     {
-        static void Main(string[] args)
+        public void printProgram(string[] args)
         {
             Console.WriteLine("hello:) Main() ");
             string strMsg = "string messag";
-            HelloWorld.Program.MsgWrite(strMsg);
+            MsgWrite(strMsg);
 
             if (args.Length != 0)
             {
@@ -21,10 +21,8 @@ namespace HelloWorld
             {
                 Console.WriteLine("please write your name... ");
             }
-
         }
-
-        public static void MsgWrite(string msg) {
+        private void MsgWrite(string msg) {
             Console.WriteLine("param : " + msg); 
         }
     } 

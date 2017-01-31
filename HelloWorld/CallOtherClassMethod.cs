@@ -42,7 +42,8 @@ namespace HelloWorld
         enum Month { Janurary, Febrary, March, April, May, June, July, Argust, September, Octorber, November, December };
         enum Dept { 기획팀, 총무팀, 회계팀, 재무팀, 영업팀, 무역팀, 생산팀};
 
-        static void Main(string[] args) {
+        internal void printClasses()
+        {
             OtherClass callOtherCalss = new OtherClass("생성자있는클래스");
             callOtherCalss.Msg("다른 클래스 메소드 호출중...");
 
@@ -59,5 +60,6 @@ namespace HelloWorld
             Console.WriteLine("TodayDate = {0}", callOtherCalss.TodayDate());
 
         }
+ 
     }
 }

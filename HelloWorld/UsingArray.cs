@@ -7,7 +7,7 @@ namespace HelloWorld
 {
     class UsingArray
     {
-        public static void Main(string[] args) {
+        public void UsingArrayMain() {
 
             string[] strArray = new string[3]{"monday", "tuesday", "wednesday"};
             string strVal = "스트링";
@@ -25,7 +25,7 @@ namespace HelloWorld
 
         }
 
-        private static void ArrayPrint(string[] strArray, ref string paramString, int paramInt)
+        private void ArrayPrint(string[] strArray, ref string paramString, int paramInt)
         {
             int i = 0;
             Console.WriteLine("main에서 온 string 변수 : {0}", paramString);

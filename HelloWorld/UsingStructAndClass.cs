@@ -29,7 +29,7 @@ namespace HelloWorld
 
     class UsingStructAndClass
     {
-        public static void Main(string[] agrs)
+        public void UsingStructAndClassMain()
         {
             /*
              *  class는 call by reference 타입 (참조형)

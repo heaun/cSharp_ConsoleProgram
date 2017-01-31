@@ -45,7 +45,9 @@
     <Compile Include="CallOtherClassMethod.cs" />
     <Compile Include="ConsoleLineRead.cs" />
     <Compile Include="DateDisplay.cs" />
+    <Compile Include="FileRead.cs" />
     <Compile Include="GetSetProperty.cs" />
+    <Compile Include="main.cs" />
     <Compile Include="ObjCompare.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
