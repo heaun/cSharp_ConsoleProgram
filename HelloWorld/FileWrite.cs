@@ -59,8 +59,7 @@ namespace HelloWorld
 
         Console.WriteLine("--------------list-------------");
         FileRead fr = new FileRead();
-        fr.ReadFileListInProject(path);
-
+        fr.ReadFileListInProject(path); 
         } 
     }
 }

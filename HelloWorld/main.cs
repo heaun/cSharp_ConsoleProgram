@@ -82,6 +82,7 @@ namespace HelloWorld
                 Console.WriteLine(tab+ " case \"6\" : UsingStructAndClass ");
                 Console.WriteLine(tab+ " case \"7\" : ConsoleLineRead     ");
                 Console.WriteLine(tab+ " case \"8\" : FileRead ");
+                Console.WriteLine(tab + "case \"9\" : FileWrite ");
                 Console.WriteLine(tab+ " case \"q\" : exit");
             Console.WriteLine(tab+"==========================================");
             Console.WriteLine(tab+"please select Number :: ");
