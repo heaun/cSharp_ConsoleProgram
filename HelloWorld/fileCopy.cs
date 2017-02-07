@@ -21,9 +21,9 @@ namespace HelloWorld
                 System.IO.Directory.CreateDirectory(targetPath);
             }
             System.IO.File.Copy(sourceFile, destFile, true);
-            fileRead();
+            AllFileCopy();
         }
-        public void fileRead() {
+        public void AllFileCopy() {
             if (System.IO.Directory.Exists(sourcePath))
             {
                 string[] files = System.IO.Directory.GetFiles(sourcePath);
