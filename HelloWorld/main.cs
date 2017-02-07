@@ -59,6 +59,10 @@ namespace HelloWorld
                         FileWrite fw = new FileWrite();
                         fw.FileWriteMain();
                          break;
+                    case "10":
+                         FileCopy fc = new FileCopy();
+                         fc.fileCopy();
+                         break;
                     case "q":
                         Console.WriteLine("end");
                         return;
@@ -83,6 +87,7 @@ namespace HelloWorld
                 Console.WriteLine(tab+ " case \"7\" : ConsoleLineRead     ");
                 Console.WriteLine(tab+ " case \"8\" : FileRead ");
                 Console.WriteLine(tab + "case \"9\" : FileWrite ");
+                Console.WriteLine(tab + "case \"10\" : Filecopy ");
                 Console.WriteLine(tab+ " case \"q\" : exit");
             Console.WriteLine(tab+"==========================================");
             Console.WriteLine(tab+"please select Number :: ");
