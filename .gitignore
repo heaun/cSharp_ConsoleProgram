@@ -50,3 +50,4 @@ HelloWorld/obj/*
 HelloWorld/*.exe
 notepad/*
 *.suo
+HelloWorld/files/subDir/*
