@@ -11,12 +11,21 @@ namespace HelloWorld
         enum LIST { Program, DateDisplay, CallOtherClassMethod, GetSetProperty, ObjCompare, UsingArray, UsingStructAndClass, ConsoleLineRead,
        FileRead }
 
+  
         static void Main(string[] args) {
-             
+
+            string fileName = "TextFile1.txt";
+            string projectPath = @"D:\3.Source\ConsoleProgram\HelloWorld";
+            string sourcePath = @"D:\3.Source\ConsoleProgram\HelloWorld\files";
+            string targetPath = @"D:\3.Source\ConsoleProgram\HelloWorld\files\subDir";
+            string sourceFile = string.Empty;
+            string destFile = string.Empty; 
+
              while (true) {  
                 printLectures(); 
                 string strRead = Console.ReadLine();
                 //Convert.ToInt32();
+                FilesFunc ff = new FilesFunc();
                 switch (strRead)
                 {
                     case "0":
@@ -52,16 +61,21 @@ namespace HelloWorld
                         clr.ConsoleLineReadMain();
                         break;
                     case "8":
-                        FileRead fr = new FileRead();
-                        fr.FileReadMain();
+                        sourceFile = System.IO.Path.Combine(sourcePath, fileName);
+                        ff.ReadDirectory(projectPath);
+                        ff.ReadFile(sourceFile);
                         break;
-                    case "9":
-                        FileWrite fw = new FileWrite();
-                        fw.FileWriteMain();
+                    case "9": 
+                        ff.Write();
                          break;
-                    case "10":
-                         FileCopy fc = new FileCopy();
-                         fc.fileCopy();
+                    case "10": 
+                         ff.Copy();
+                         break;
+                    case "11": 
+                         ff.Move();
+                         break;
+                    case "12":
+                         ff.Delete();
                          break;
                     case "q":
                         Console.WriteLine("end");
@@ -88,6 +102,8 @@ namespace HelloWorld
                 Console.WriteLine(tab+ " case \"8\" : FileRead ");
                 Console.WriteLine(tab + "case \"9\" : FileWrite ");
                 Console.WriteLine(tab + "case \"10\" : Filecopy ");
+                Console.WriteLine(tab + "case \"11\" : FileMove ");
+                Console.WriteLine(tab + "case \"12\" : FileDelete ");
                 Console.WriteLine(tab+ " case \"q\" : exit");
             Console.WriteLine(tab+"==========================================");
             Console.WriteLine(tab+"please select Number :: ");

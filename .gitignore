@@ -51,3 +51,4 @@ HelloWorld/*.exe
 notepad/*
 *.suo
 HelloWorld/files/subDir/*
+HelloWorld/*.txt
