@@ -10,10 +10,8 @@ namespace HelloWorld
         string fileName = "TextFile1.txt";
         string projectPath = @"D:\3.Source\ConsoleProgram\HelloWorld";
         string sourcePath = @"D:\3.Source\ConsoleProgram\HelloWorld\files";
-        string targetPath = @"D:\3.Source\ConsoleProgram\HelloWorld\files\subDir";
-   
+        string targetPath = @"D:\3.Source\ConsoleProgram\HelloWorld\files\subDir"; 
  
-
         public void ReadFile(String sourceFile){ 
             Encoding MyEncode = Encoding.GetEncoding("euc-kr");
             Console.WriteLine("myEncode.EncodingName = {0}", MyEncode.EncodingName);
@@ -165,8 +163,7 @@ namespace HelloWorld
         }
 
         Console.WriteLine("--------------list-------------");
-        FileRead fr = new FileRead();
-        fr.ReadFileListInProject(sourcePath); 
+        ReadDirectory(sourcePath); 
         }
 
         private Boolean isFileExist(string sourcefile)
