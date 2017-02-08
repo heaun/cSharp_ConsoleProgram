@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace HelloWorld
 { 
@@ -77,6 +78,9 @@ namespace HelloWorld
                     case "12":
                          ff.Delete();
                          break;
+                    case "13":
+                         MultiThreadExample();  
+                         break;
                     case "q":
                         Console.WriteLine("end");
                         return;
@@ -85,6 +89,27 @@ namespace HelloWorld
                 }
             }
              
+        }
+
+        private static void MultiThreadExample()
+        {
+            MultiThread mt = new MultiThread();
+            Thread workerThread = new Thread(mt.DoWork);
+
+            workerThread.Start();
+            Console.WriteLine("main thread : Starting worker thread....");
+            
+            while (!workerThread.IsAlive);
+
+            Thread.Sleep(1); 
+            Console.WriteLine("main thread : Thread.Sleep(1) : main thread pause...");
+            
+            mt.RequestStop();
+
+            workerThread.Join();
+            // 이 메서드는 개체가 가리키는 스레드가 종료될 때까지 현재 스레드를 차단하거나 대기 상태로 만듭니다. 
+            // 따라서 Join은 작업자 스레드가 반환되고 자체 종료될 때까지 반환되지 않습니다.
+            Console.WriteLine("main thread : Worker thread has terminated.");
         }
 
         private static void printLectures()
@@ -104,6 +129,7 @@ namespace HelloWorld
                 Console.WriteLine(tab + "case \"10\" : Filecopy ");
                 Console.WriteLine(tab + "case \"11\" : FileMove ");
                 Console.WriteLine(tab + "case \"12\" : FileDelete ");
+                Console.WriteLine(tab + "case \"13\" : Thread ");
                 Console.WriteLine(tab+ " case \"q\" : exit");
             Console.WriteLine(tab+"==========================================");
             Console.WriteLine(tab+"please select Number :: ");

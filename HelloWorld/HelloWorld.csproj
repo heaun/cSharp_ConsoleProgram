@@ -45,13 +45,10 @@
     <Compile Include="CallOtherClassMethod.cs" />
     <Compile Include="ConsoleLineRead.cs" />
     <Compile Include="DateDisplay.cs" />
-    <Compile Include="FileCopy.cs" />
-    <Compile Include="FileMove.cs" />
-    <Compile Include="FileRead.cs" />
     <Compile Include="FilesFunc.cs" />
-    <Compile Include="FileWrite.cs" />
     <Compile Include="GetSetProperty.cs" />
-    <Compile Include="main.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="MultiThread.cs" />
     <Compile Include="ObjCompare.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
