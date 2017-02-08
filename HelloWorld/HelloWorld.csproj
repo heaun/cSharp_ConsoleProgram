@@ -49,6 +49,7 @@
     <Compile Include="GetSetProperty.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MultiThread.cs" />
+    <Compile Include="MultiThread_SyncEvent.cs" />
     <Compile Include="ObjCompare.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
