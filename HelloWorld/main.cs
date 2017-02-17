@@ -2,66 +2,58 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading; 
 
 namespace HelloWorld
 { 
     class MainClass
     {
-        enum LIST { Program, DateDisplay, CallOtherClassMethod, GetSetProperty, ObjCompare, UsingArray, UsingStructAndClass, ConsoleLineRead,
-       FileRead }
+        private static void Main(string[] args) {
 
-  
-        static void Main(string[] args) {
+            const string fileName = "TextFile1.txt";
+            const string projectPath = @"D:\3.Source\ConsoleProgram\HelloWorld";
+            const string sourcePath = @"D:\3.Source\ConsoleProgram\HelloWorld\files";
 
-            string fileName = "TextFile1.txt";
-            string projectPath = @"D:\3.Source\ConsoleProgram\HelloWorld";
-            string sourcePath = @"D:\3.Source\ConsoleProgram\HelloWorld\files";
-            string sourceFile = string.Empty;
-            string destFile = string.Empty; 
-
-             while (true) {  
-                printLectures(); 
-                string strRead = Console.ReadLine(); 
-                FilesFunc ff = new FilesFunc();
+            while (true) {  
+                PrintLectures(); 
+                var strRead = Console.ReadLine(); 
+                var ff = new FilesFunc();
                 switch (strRead)
                 {
                     case "0":
-                        Program p = new Program();
-                        p.printProgram(args);
+                        var p = new Program();
+                        p.PrintProgram(args);
                         break;
                     case "1":
-                        DateDisplay d = new DateDisplay();
+                        var d = new DateDisplay();
                         d.printData(args);
                         break;
                     case "2":
-                        CallOtherClassMethod c = new CallOtherClassMethod();
+                        var c = new CallOtherClassMethod();
                         c.printClasses();//what is internal?
                         break;
                     case "3":
-                        GetSetProperty.GetSetMainClass gs = new GetSetProperty.GetSetMainClass();
-                        gs.printAttribute(args);
+                        var gs = new GetSetProperty.GetSetMainClass();
+                        gs.PrintAttribute(args);
                         break;
                     case "4":
-                        ObjCompare o = new ObjCompare();
+                        var o = new ObjCompare();
                         o.ObjCompareMain();
                         break;
                     case "5":
-                        UsingArray u = new UsingArray();
+                        var u = new UsingArray();
                         u.UsingArrayMain();
                         break;
                     case "6":
-                        UsingStructAndClass usc = new UsingStructAndClass();
+                        var usc = new UsingStructAndClass();
                         usc.UsingStructAndClassMain();
                         break;
                     case "7":
-                        ConsoleLineRead clr = new ConsoleLineRead();
+                        var clr = new ConsoleLineRead();
                         clr.ConsoleLineReadMain();
                         break;
                     case "8":
-                        sourceFile = System.IO.Path.Combine(sourcePath, fileName);
+                        var sourceFile = System.IO.Path.Combine(sourcePath, fileName);
                         ff.ReadDirectory(projectPath);
                         ff.ReadFile(sourceFile);
                         break;
@@ -83,6 +75,10 @@ namespace HelloWorld
                     case "14":
                          MultiSyncEventThreadExample();
                          break;
+                    case "15": 
+                        ConvertHex ch = new ConvertHex();
+                        ch.ParseHexCode();
+                        break;
                     case "q":
                         Console.WriteLine("end");
                         return;
@@ -92,12 +88,12 @@ namespace HelloWorld
             } 
         }
 
-        private static void ShowQueueContents(Queue<int> q, int Count)
+        private static void ShowQueueContents(Queue<int> q, int count)
         { 
             lock (((ICollection)q).SyncRoot)
             {
-                Console.Write("{0} : ", Count);
-                foreach (int item in q)
+                Console.Write("{0} : ", count);
+                foreach (var item in q)
                 {
                     Console.Write("{0} ", item);
                 }
@@ -108,20 +104,20 @@ namespace HelloWorld
 
         private static void MultiSyncEventThreadExample()
         {   
-            Queue<int> queue = new Queue<int>();
-            MultiThread_SyncEvent syncEvents = new MultiThread_SyncEvent();
+            var queue = new Queue<int>();
+            var syncEvents = new MultiThread_SyncEvent();
 
             Console.WriteLine("Main Thread :: Configuring worker threads....");
-            MultiThread_SyncEvent.Producer producer = new MultiThread_SyncEvent.Producer(queue, syncEvents);
-            MultiThread_SyncEvent.Consumer consumer = new MultiThread_SyncEvent.Consumer(queue, syncEvents);
-            Thread producerThread = new Thread(producer.ThreadRun);
-            Thread consumerThread = new Thread(consumer.ThreadRun);
+            var producer = new MultiThread_SyncEvent.Producer(queue, syncEvents);
+            var consumer = new MultiThread_SyncEvent.Consumer(queue, syncEvents);
+            var producerThread = new Thread(producer.ThreadRun);
+            var consumerThread = new Thread(consumer.ThreadRun);
 
             Console.WriteLine("Main Thread :: Launching producer and consumer threads....");
             producerThread.Start();
             consumerThread.Start();
 
-            for (int i = 0; i < 4; i++) {
+            for (var i = 0; i < 4; i++) {
                 Thread.Sleep(2500);
                 ShowQueueContents(queue, i);
             }
@@ -135,8 +131,8 @@ namespace HelloWorld
 
         private static void MultiThreadExample()
         {
-            MultiThread mt = new MultiThread();
-            Thread workerThread = new Thread(mt.DoWork);
+            var mt = new MultiThread();
+            var workerThread = new Thread(mt.DoWork);
 
             workerThread.Start();
             Console.WriteLine("Main Thread ::  Starting worker thread....");
@@ -154,9 +150,9 @@ namespace HelloWorld
             Console.WriteLine("Main Thread :: Worker thread has terminated.");
         }
 
-        private static void printLectures()
+        private static void PrintLectures()
         {
-            string tab = "\t\t\t\t\t\t\t";  
+            var tab = "\t\t\t\t\t\t\t";  
             Console.WriteLine("\n"+ tab+"================== LIST ==================");
                 Console.WriteLine(tab+ " case \"0\" : Program" );
                 Console.WriteLine(tab+ " case \"1\" : DateDisplay");
@@ -173,6 +169,7 @@ namespace HelloWorld
                 Console.WriteLine(tab + "case \"12\" : FileDelete ");
                 Console.WriteLine(tab + "case \"13\" : Thread ");
                 Console.WriteLine(tab + "case \"14\" : Thread SyncEvent");
+                Console.WriteLine(tab + "case \"15\" : ConvertToHex");
                 Console.WriteLine(tab+ " case \"q\" : exit");
             Console.WriteLine(tab+"==========================================");
             Console.WriteLine(tab+"please select Number :: ");
