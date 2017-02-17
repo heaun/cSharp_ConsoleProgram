@@ -24,14 +24,14 @@ namespace HelloWorld
         }
 
         public int CalCulate(int pVal) {
-            int rtnResult = 0;
+            var rtnResult = 0;
             rtnResult = 100 * pVal;
             return rtnResult + 30;
         }
 
         public string TodayDate() {
-            DateTime today = DateTime.Now;
-            string rtnDate = today.Year.ToString("0000") + "/" + today.Month.ToString("00") + "/" + today.Day.ToString("00");
+            var today = DateTime.Now;
+            var rtnDate = today.Year.ToString("0000") + "/" + today.Month.ToString("00") + "/" + today.Day.ToString("00");
             return rtnDate;
         }
     }
@@ -44,18 +44,18 @@ namespace HelloWorld
 
         internal void printClasses()
         {
-            OtherClass callOtherCalss = new OtherClass("생성자있는클래스");
+            var callOtherCalss = new OtherClass("생성자있는클래스");
             callOtherCalss.Msg("다른 클래스 메소드 호출중...");
 
-            int val = 100;
-            int rtnVal = 0;
+            var val = 100;
+            var rtnVal = 0;
 
             Console.Write("출력 ->");
             callOtherCalss.m_Display();
 
             rtnVal = callOtherCalss.CalCulate(val);
 
-            Month month = Month.Argust;
+            var month = Month.Argust;
             Console.WriteLine("Month = {0}", month.ToString());
             Console.WriteLine("TodayDate = {0}", callOtherCalss.TodayDate());
 

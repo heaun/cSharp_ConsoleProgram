@@ -5,24 +5,20 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class ObjCompare
+    internal class ObjCompare
     {
         public void ObjCompareMain()
         {
-            string strBuffer, strCompare;
-            bool strTureFalse = false;
-
-            strBuffer = "삼각형";
-            strCompare = string.Copy(strBuffer);
+            const string strBuffer = "삼각형";
+            var strCompare = string.Copy(strBuffer);
 
             Console.WriteLine("strBuffer / strCompare : {0} / {1}", strBuffer, strCompare);
 
-            strTureFalse = strBuffer.Equals(strCompare);
             Console.WriteLine("if strBuffer = strCompare ? {0}", strBuffer.Equals(strCompare));
 
             Console.WriteLine("isEqualObject ? {0}", (object)strBuffer == (object)strCompare);
             Console.WriteLine("Object strBuffer Type ? {0}", strBuffer.GetType());
-            Console.WriteLine("compare strBuffer with strBuffer ? {0}", strBuffer.CompareTo(strBuffer));
+            Console.WriteLine("compare strBuffer with strBuffer ? {0}", string.Compare(strBuffer, strBuffer, StringComparison.Ordinal));
 
         }
     }

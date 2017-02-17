@@ -53,13 +53,13 @@ namespace HelloWorld
              * lock에 전달되는 인수는 ICollection인터페이스를 통해 노출되는 SyncRoot 필드. 
              * SyncRoot : 스레드 액서스를 동기화 하기 위해 제공된다. 
              */
-            int count = 0;
-            Random r = new Random();
+            var count = 0;
+            var r = new Random();
 
             while (!_syncEvents.ExitThreadEvent.WaitOne(0, false)) {
                 lock (((ICollection)_queue).SyncRoot) {
                     while (_queue.Count < 20) {
-                        int inputValue = r.Next(0, 100);
+                        var inputValue = r.Next(0, 100);
                         //Console.WriteLine("Producer thread : _queue Count :: {0} Enqueue :: {1}", _queue.Count, inputValue);
                         _queue.Enqueue(inputValue);
                         _syncEvents.NewItemEvent.Set();
@@ -90,13 +90,13 @@ namespace HelloWorld
                  * WaitAny : 신호를 받은 이벤트의 인덱스를 반환. ( 인덱스 1 : 스레드 종료, 인덱스 0 :  새 항목)
                  * 새항목이벤트가 전달되면 lock을 사용하여 컬렉션에 단독 엑세스하고 새 항목을 사용할 수 있다. 
                  */
-                int count = 0;
+                var count = 0;
 
                 while (WaitHandle.WaitAny(_syncEvents.EventArray) != 1)
                 {
                     lock (((ICollection)_queue).SyncRoot)
                     {
-                        int item = _queue.Dequeue();
+                        var item = _queue.Dequeue();
                     }
                     count++;
                 }

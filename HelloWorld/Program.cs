@@ -5,12 +5,12 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Program
+    internal class Program
     {
-        public void printProgram(string[] args)
+        public void PrintProgram(string[] args)
         {
             Console.WriteLine("hello:) Main() ");
-            string strMsg = "string messag";
+            const string strMsg = "string messag";
             MsgWrite(strMsg);
 
             if (args.Length != 0)
@@ -22,7 +22,7 @@ namespace HelloWorld
                 Console.WriteLine("please write your name... ");
             }
         }
-        private void MsgWrite(string msg) {
+        private static void MsgWrite(string msg) {
             Console.WriteLine("param : " + msg); 
         }
     } 

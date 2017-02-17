@@ -12,7 +12,7 @@ namespace HelloWorld
         public void printData(string[] args)
         {
 
-            DateTime curDate = DateTime.Now;
+            var curDate = DateTime.Now;
 
             string strDate, strDate2, strDate3, strDayofWeek, strTime, strTime2, strTime3;
 
@@ -25,9 +25,9 @@ namespace HelloWorld
             strTime3 = curDate.ToLongTimeString();
 
             strDayofWeek = curDate.DayOfWeek.ToString();
-            DayOfWeek strDayOfWeek1 = curDate.DayOfWeek;
+            var strDayOfWeek1 = curDate.DayOfWeek;
 
-            int strDayOfWeek2 = (int)curDate.DayOfWeek;
+            var strDayOfWeek2 = (int)curDate.DayOfWeek;
 
             printDateTime(TYPE.DATETIME, curDate.ToString());
             printDateTime(TYPE.DATE, strDate);
@@ -44,7 +44,7 @@ namespace HelloWorld
 
         private void printDateTime(TYPE type, string strDate)
         {
-            string strMessage = string.Empty;
+            var strMessage = string.Empty;
             switch (type)
             {
                 case TYPE.DATETIME:

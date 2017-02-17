@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HelloWorld
 {
@@ -9,9 +7,9 @@ namespace HelloWorld
     {
         public void UsingArrayMain() {
 
-            string[] strArray = new string[3]{"monday", "tuesday", "wednesday"};
-            string strVal = "스트링";
-            int intVal = 100;
+            var strArray = new string[3]{"monday", "tuesday", "wednesday"};
+            var strVal = "스트링";
+            const int intVal = 100;
 
             /*
              * 변수/구조체 : call by value
@@ -23,13 +21,14 @@ namespace HelloWorld
             // 일반변수를 참조용으로 넘길때 ref 사용한다. 
             ArrayPrint(strArray, ref strVal, intVal);
 
-        }
+        } 
 
-        private void ArrayPrint(string[] strArray, ref string paramString, int paramInt)
+        private static void ArrayPrint(IEnumerable<string> strArray, ref string paramString, int paramInt)
         {
-            int i = 0;
+            if (paramInt <= 0) throw new ArgumentOutOfRangeException("paramInt");
+            var i = 0;
             Console.WriteLine("main에서 온 string 변수 : {0}", paramString);
-            foreach(string a in strArray){
+            foreach(var a in strArray){
                 Console.WriteLine("strArray[{0}] = {1}", i, a);
                 i++;
             }

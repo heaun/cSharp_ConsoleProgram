@@ -10,7 +10,7 @@ namespace CmdLine
         public void ConsoleLineReadMain()
         {
             string strRead;
-            int i = 0;
+            var i = 0;
             Console.WriteLine("name -> ");
             strRead = Console.ReadLine();
 

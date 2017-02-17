@@ -1,33 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HelloWorld
 {
-    struct AddrStruct
+    internal struct AddrStruct
     {
-        public string ID;
+        public string Id;
         public string Name;
         public string Addr;
         public string Tel;
         public string Post;
-        public string HP;
+        public string Hp;
         public string Remarks;
     } 
 
     class MyAddrListClass
     {
-        public string ID;
+        public string Id;
         public string Name;
         public string Addr;
         public string Tel;
         public string Post;
-        public string HP;
+        public string Hp;
         public string Remarks;
     }
 
-    class UsingStructAndClass
+    internal class UsingStructAndClass
     {
         public void UsingStructAndClassMain()
         {
@@ -44,14 +41,16 @@ namespace HelloWorld
              * //속성자
              * }
              */
-            MyAddrListClass cAddrList = new MyAddrListClass();
-            cAddrList.ID = "C0001";
-            cAddrList.Name = "나나나";
-            cAddrList.Addr = "강남구";
-            cAddrList.Tel = "02-511-3456";
-            cAddrList.Post = "135-789";
-            cAddrList.HP = "011-511-3456";
-            cAddrList.Remarks = "클래스 구조체 사용";
+            var cAddrList = new MyAddrListClass
+            {
+                Id = "C0001",
+                Name = "나나나",
+                Addr = "강남구",
+                Tel = "02-511-3456",
+                Post = "135-789",
+                Hp = "011-511-3456",
+                Remarks = "클래스 구조체 사용"
+            };
 
             /*
              * struct는 call by value 타입 (value형)
@@ -62,44 +61,44 @@ namespace HelloWorld
              * //필드멤버리스트
              * }
              */
-            AddrStruct StructAddr;
+            AddrStruct structAddr;
 
-            StructAddr.ID = "S0001";
-            StructAddr.Name = "너너너";
-            StructAddr.Addr = "역삼동";
-            StructAddr.Tel = "02-123-4567";
-            StructAddr.Post = "135-789";
-            StructAddr.HP = "011-511-3456";
-            StructAddr.Remarks = "Struct 구조체 사용";
+            structAddr.Id = "S0001";
+            structAddr.Name = "너너너";
+            structAddr.Addr = "역삼동";
+            structAddr.Tel = "02-123-4567";
+            structAddr.Post = "135-789";
+            structAddr.Hp = "011-511-3456";
+            structAddr.Remarks = "Struct 구조체 사용";
 
             Console.WriteLine("===Main() 클래스 구조체 출력(변경전)===");
             Console.WriteLine("Class주소 : {0}", cAddrList.Addr);
 
             Console.WriteLine("===Main() Struct 구조체 출력(변경전)===");
-            Console.WriteLine("Struct주소 : {0}", StructAddr.Addr);
+            Console.WriteLine("Struct주소 : {0}", structAddr.Addr);
 
             Console.WriteLine("=== Call AddrPrint ===");
-            AddPrint(cAddrList, StructAddr);
+            AddPrint(cAddrList, structAddr);
 
             Console.WriteLine("===Main() 클래스 구조체 출력(변경후)===");
             Console.WriteLine("Class주소 : {0}", cAddrList.Addr);
 
             Console.WriteLine("===Main() Struct 구조체 출력(변경후)===");
-            Console.WriteLine("Struct주소 : {0}", StructAddr.Addr);
+            Console.WriteLine("Struct주소 : {0}", structAddr.Addr);
             
 
         }
 
-        private static void AddPrint(MyAddrListClass cAddrList, AddrStruct StructAddr)
+        private static void AddPrint(MyAddrListClass cAddrList, AddrStruct structAddr)
         {
             Console.WriteLine("===AddPrint() 클래스 구조체 출력 ===");
             Console.WriteLine("Class주소 : {0}", cAddrList.Addr);
 
             Console.WriteLine("===AddPrint() Struct 구조체 출력 ===");
-            Console.WriteLine("Struct주소 : {0}", StructAddr.Addr);
+            Console.WriteLine("Struct주소 : {0}", structAddr.Addr);
 
             cAddrList.Addr = "전북 전주시 덕진구";
-            StructAddr.Addr = "전북 전주시 덕진구";
+            structAddr.Addr = "전북 전주시 덕진구";
 
         }
     } 

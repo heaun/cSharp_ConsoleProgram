@@ -13,10 +13,10 @@ namespace HelloWorld
         string targetPath = @"D:\3.Source\ConsoleProgram\HelloWorld\files\subDir"; 
  
         public void ReadFile(String sourceFile){ 
-            Encoding MyEncode = Encoding.GetEncoding("euc-kr");
+            var MyEncode = Encoding.GetEncoding("euc-kr");
             Console.WriteLine("myEncode.EncodingName = {0}", MyEncode.EncodingName);
 
-            string pathway = Environment.CurrentDirectory;
+            var pathway = Environment.CurrentDirectory;
             Console.WriteLine("pathway : {0}", pathway); 
             Console.WriteLine("========================================");
 
@@ -29,10 +29,10 @@ namespace HelloWorld
             // Example #2
             // Read each line of the file into a string array. Each element
             // of the array is one line of the file.
-            string[] lines = System.IO.File.ReadAllLines(sourceFile);
+            var lines = System.IO.File.ReadAllLines(sourceFile);
 
             // Display the file contents by using a foreach loop. 
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 // Use a tab to indent each line of the file.
                 Console.WriteLine("\t" + line);
@@ -44,8 +44,8 @@ namespace HelloWorld
         } 
          
         public void Copy() {
-            string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
-            string destFile   = System.IO.Path.Combine(targetPath, fileName);
+            var sourceFile = System.IO.Path.Combine(sourcePath, fileName);
+            var destFile   = System.IO.Path.Combine(targetPath, fileName);
 
             if (!isFileExist(targetPath))
             {
@@ -68,11 +68,11 @@ namespace HelloWorld
         public void AllCopy() {
             if (isFileExist(sourcePath))
             {
-                string[] files = System.IO.Directory.GetFiles(sourcePath);
-                foreach (string s in files)
+                var files = System.IO.Directory.GetFiles(sourcePath);
+                foreach (var s in files)
                 {
                     fileName = System.IO.Path.GetFileName(s);
-                    string destFile = System.IO.Path.Combine(targetPath, fileName);
+                    var destFile = System.IO.Path.Combine(targetPath, fileName);
                     System.IO.File.Copy(s, destFile, true);
                 }
                 Console.WriteLine("filecopy done.");
@@ -88,8 +88,8 @@ namespace HelloWorld
 
         public void Move()
         {
-            string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
-            string destFile = System.IO.Path.Combine(targetPath, fileName);
+            var sourceFile = System.IO.Path.Combine(sourcePath, fileName);
+            var destFile = System.IO.Path.Combine(targetPath, fileName);
   
             Console.WriteLine("file Move Start....");
             
@@ -103,7 +103,7 @@ namespace HelloWorld
 
         public void Delete() {
 
-            string destFile = System.IO.Path.Combine(targetPath, fileName);
+            var destFile = System.IO.Path.Combine(targetPath, fileName);
             ReadDirectory(targetPath);
 
             Console.WriteLine("file Delete Start....");
@@ -129,7 +129,7 @@ namespace HelloWorld
         System.IO.File.WriteAllLines(sourcePath + inputfileName, lines); 
 
         // Example #2: Write one string to a text file.
-        string text = "A class is the most powerful data type in C#. Like a structure, " +
+        var text = "A class is the most powerful data type in C#. Like a structure, " +
                        "a class defines the data and behavior of the data type. ";
         // WriteAllText creates a file, writes the specified string to the file,
         // and then closes the file.    You do NOT need to call Flush() or Close().
@@ -140,10 +140,10 @@ namespace HelloWorld
         // IDisposable.Dispose on the stream object.
         // NOTE: do not use FileStream for text files because it writes bytes, but StreamWriter
         // encodes the output as text.
-        using (System.IO.StreamWriter file =
+        using (var file =
             new System.IO.StreamWriter(sourcePath + fileName))
         {
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 // If the line doesn't contain the word 'Second', write the line to the file.
                 if (!line.Contains("Second"))
@@ -156,7 +156,7 @@ namespace HelloWorld
         // Example #4: Append new text to an existing file.
         // The using statement automatically flushes AND CLOSES the stream and calls 
         // IDisposable.Dispose on the stream object.
-        using (System.IO.StreamWriter file =
+        using (var file =
             new System.IO.StreamWriter(sourcePath + fileName, true))
         {
             file.WriteLine("Fourth line");
@@ -169,7 +169,7 @@ namespace HelloWorld
         private Boolean isFileExist(string sourcefile)
         {
             Console.WriteLine("Checking file..........");
-            Boolean result = false;
+            var result = false;
 
             if (System.IO.File.Exists(sourcefile))
             {
@@ -186,11 +186,11 @@ namespace HelloWorld
         {
             Console.WriteLine("This program lists all the files in the directory: " + path);
 
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
+            var dir = new System.IO.DirectoryInfo(path);
 
-            foreach (System.IO.FileInfo file in dir.GetFiles("*.*"))
+            foreach (var file in dir.GetFiles("*.*"))
             {
-                string fileName = file.Name;
+                var fileName = file.Name;
 
                 if (file.Name.Contains(".exe"))
                 {
