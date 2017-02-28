@@ -8,7 +8,6 @@ namespace HelloWorld
     class FilesFunc
     {
         string fileName = "TextFile1.txt";
-        string projectPath = @"D:\3.Source\ConsoleProgram\HelloWorld";
         string sourcePath = @"D:\3.Source\ConsoleProgram\HelloWorld\files";
         string targetPath = @"D:\3.Source\ConsoleProgram\HelloWorld\files\subDir"; 
  

@@ -53,6 +53,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,9 +63,11 @@
   <ItemGroup>
     <Compile Include="CallOtherClassMethod.cs" />
     <Compile Include="ConsoleLineRead.cs" />
-    <Compile Include="ConvertHex.cs" />
-    <Compile Include="DateDisplay.cs" />
-    <Compile Include="FilesFunc.cs" />
+    <Compile Include="Monos\Mono.cs" />
+    <Compile Include="Utils\ConvertHex.cs" />
+    <Compile Include="Utils\DateDisplay.cs" />
+    <Compile Include="Utils\DBConnection.cs" />
+    <Compile Include="Utils\FilesFunc.cs" />
     <Compile Include="GetSetProperty.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MultiThread.cs" />
@@ -74,6 +77,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsingArray.cs" />
     <Compile Include="UsingStructAndClass.cs" />
+    <Compile Include="Utils\ConvertBytes.cs" />
+    <Compile Include="Utils\LogDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -96,6 +101,12 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

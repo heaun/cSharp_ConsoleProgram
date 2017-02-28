@@ -2,12 +2,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading; 
+using System.Text;
+using System.Threading;
+using HelloWorld.Utils;
 
 namespace HelloWorld
 { 
     class MainClass
     {
+        public static LogDisplay log = new LogDisplay();
+        
         private static void Main(string[] args) {
 
             const string fileName = "TextFile1.txt";
@@ -18,6 +22,8 @@ namespace HelloWorld
                 PrintLectures(); 
                 var strRead = Console.ReadLine(); 
                 var ff = new FilesFunc();
+                string title = ""; 
+
                 switch (strRead)
                 {
                     case "0":
@@ -79,6 +85,14 @@ namespace HelloWorld
                         ConvertHex ch = new ConvertHex();
                         ch.ParseHexCode();
                         break;
+                    case "16":
+                        title = "";
+                        GetByteCountData(title); 
+                        break;
+                    case "17":
+                        var m = new Mono.Mono();
+                        m.GetMonoDatas();
+                        break;
                     case "q":
                         Console.WriteLine("end");
                         return;
@@ -86,6 +100,50 @@ namespace HelloWorld
                         continue;
                 }
             } 
+        }
+
+        private static void GetByteCountData(String title)
+        {
+            var utils = new Utils.ConvertBytes();
+
+            try
+            {
+                Encoding encoding = Encoding.GetEncoding("euc-kr");
+
+                int standardSize = Convert.ToInt32(SetParams("Split Byte Size"));
+                string requestText = SetParams("Text");
+
+                Boolean isOverSize = utils.IsStringOverByteSize(requestText, encoding, standardSize);
+                
+                string result = string.Empty;
+                if (isOverSize)
+                { 
+                    Boolean confirm = SetParams("continue splitString ?? y/n").ToLower() == "y" ? true : false;
+                    if (confirm) result = utils.SplitStringbyStandardSize(requestText, standardSize, encoding);
+                    requestText = result;
+                }
+                
+                int getByteSize = utils.GetByteCount(requestText, encoding);
+                Console.WriteLine("\n-----------------------------------------------------");
+                
+                log.PrintResult("Encoding", encoding.EncodingName,"");
+                log.PrintResult("Result", requestText, "(" + getByteSize.ToString() + " Bytes)");
+            }
+            catch (System.ArgumentException e)
+            {
+                e.StackTrace.ToString();
+            }
+            catch (Exception e)
+            {
+                e.StackTrace.ToString();
+            }
+        }
+
+        private static string SetParams(string header)
+        {
+            Console.Write(header + " : ");
+            var strRead = Console.ReadLine();
+            return strRead;
         }
 
         private static void ShowQueueContents(Queue<int> q, int count)
