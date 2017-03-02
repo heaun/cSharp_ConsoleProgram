@@ -1,79 +1,71 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 using HelloWorld.Utils;
 
-namespace HelloWorld.Mono
+namespace HelloWorld.Monos
 {
     class Mono
     {
-        Utils.LogDisplay log = new LogDisplay();
-        DbConnection dbConn = new DbConnection();
+        private readonly AppSettingsReader _reader = new AppSettingsReader();
 
-        private AppSettingsReader reader;
-        private int monoID { get; set;}
-        private string type { get; set; }
-        private string itemCode { get; set; }
-        private string mono { get; set; }
-        private DateTime lastUpdate { get; set; }
+        public string Sql { get; set; }
+        public Encoding Encoding;
+        private string ConnectionString { get; set; }
+        private int MaxByteSize { get; set; }
+        private readonly LogDisplay _log;
 
-        public string Tag;
-        public string DbConnKcms { get; private set; }
-        public string DbConnCustom { get; private set; }
-        public string sql { get; set; }
-
-        private SqlConnection _dbconnConnection;
-        private Exception lastError;
-        private bool disposed;
-         
         public Mono()
         {
-            reader = new AppSettingsReader();
-            Tag = this.GetType().Name;
+
+            Console.WriteLine("------------------------------------------------------");
+            Console.WriteLine("\t\tResizing String Program :)");
+            Console.WriteLine("------------------------------------------------------");
+            
+            _log = new LogDisplay(this.GetType().Name);
+
+            ConnectionString = _reader.GetValue("DbConnString", typeof(string)).ToString();
+            MaxByteSize = (int)_reader.GetValue("MaxByteSize", typeof(int));
+            string encodingType = _reader.GetValue("Encoding", typeof(string)).ToString();
+            Encoding = Encoding.GetEncoding(encodingType);
         }
 
         public void GetMonoDatas()
         {
             try
             {
-                string connectionString = dbConn._KIMSCustom;
-                string sql = reader.GetValue("SelectMonoInfo", typeof(string)).ToString();
+                Sql = _reader.GetValue("SelectMonoInfo", typeof(string)).ToString() + MaxByteSize;
 
-                log.Trace(Tag, "KIMS(KCMS) Database Connecting..", "");
-                log.Trace(Tag, "sql", sql);
+                _log.Trace("Database Connecting..", "");
+                _log.Trace(Sql, "");
 
-                using (SqlConnection con = new SqlConnection(connectionString))
+                string monoData = string.Empty;
+                ConvertBytes cs = new ConvertBytes(Encoding, MaxByteSize);
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    log.Trace(Tag, "ok", "");
 
-                    log.Trace(Tag, "KIMS Database Reading..", "");
-                    using (SqlCommand command = new SqlCommand(sql, con))
+                    _log.Trace("Database Connection Success.", "");
+                    _log.Trace("Database Reading..", "");
+
+                    using (SqlCommand command = new SqlCommand(Sql, con))
                     using (SqlDataReader dataReader = command.ExecuteReader())
                     {
-                        log.Trace(Tag, "Reading OK", "");
                         while (dataReader.Read())
                         {
-                            Console.WriteLine("{0} {1} {2}",
-                                dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2));
+                            monoData = dataReader.GetString(0);
+                            int byteSize = cs.GetByteSize(monoData);
+                            _log.PrintResult(Encoding, monoData, byteSize);
                         }
                     }
                 }
-
+                cs.ResizeMonoData(monoData);
+                _log.Trace("All process complete.", "");
             }
-            catch (InvalidOperationException e)
+            catch (Exception e)
             {
-                //: 인스턴스 오류
-                log.Trace(Tag, "\n-----------------------------------","");
-                log.Trace(Tag, "error", "Please check database name...");
-                Console.WriteLine(e.ToString()); 
-            }
-            catch(Exception e)
-            {
-                log.Trace(Tag, "error", e.ToString());
+                _log.Trace("error", e.ToString());
             }
         }
 

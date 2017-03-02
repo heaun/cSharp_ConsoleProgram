@@ -1,23 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
 
 namespace HelloWorld.Utils
 {
     class LogDisplay
-    { 
-        public void Trace(string title, string value, string detail)
-        {   
-            Console.WriteLine("{0} {1} :: {2} {3}", DateTime.Now, title, value, detail);
-        }
+    {
+        private readonly string _tag;
 
-        public void PrintResult(string title, string value, string detail)
+        public LogDisplay(string tag)
         {
-            Console.WriteLine("{0} : {1} {2}", title, value, detail);
+            this._tag = tag;
         }
 
+        public void Trace(string context, string detail)
+        {
+            Console.WriteLine("{0} {1} :: {2} {3}", DateTime.Now, _tag, context, detail);
+        }
 
+        public void PrintResult(Encoding encoding, string context, int length)
+        {
+            Trace(context, "");
+            Console.WriteLine("\n-----------------------------------------------------------------");
+            Trace("Encoding Type > ", encoding.EncodingName);
+            Trace("Size > ", length + " Bytes");
+            Console.WriteLine("-----------------------------------------------------------------");
+        }
+
+        public string SetCommendRead(string title, string context)
+        {
+            Console.Write("{0} {1} :: {2}", DateTime.Now, title, context);
+            return Console.ReadLine();
+        }
     }
 }

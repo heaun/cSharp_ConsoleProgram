@@ -2,16 +2,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
+using HelloWorld.Monos;
 using HelloWorld.Utils;
 
 namespace HelloWorld
 { 
     class MainClass
     {
-        public static LogDisplay log = new LogDisplay();
-        
+        private readonly LogDisplay _log;
+        public MainClass()
+        {
+            _log = new LogDisplay(this.GetType().Name);
+        }
+
         private static void Main(string[] args) {
 
             const string fileName = "TextFile1.txt";
@@ -20,11 +27,11 @@ namespace HelloWorld
 
             while (true) {  
                 PrintLectures(); 
-                var strRead = Console.ReadLine(); 
-                var ff = new FilesFunc();
-                string title = ""; 
 
-                switch (strRead)
+                var readLine = Console.ReadLine();
+                //if (readLine != null) args[0] = readLine;
+                var ff = new FilesFunc();
+                switch (readLine)
                 {
                     case "0":
                         var p = new Program();
@@ -84,13 +91,9 @@ namespace HelloWorld
                     case "15": 
                         ConvertHex ch = new ConvertHex();
                         ch.ParseHexCode();
-                        break;
+                        break; 
                     case "16":
-                        title = "";
-                        GetByteCountData(title); 
-                        break;
-                    case "17":
-                        var m = new Mono.Mono();
+                        var m = new Mono();
                         m.GetMonoDatas();
                         break;
                     case "q":
@@ -101,51 +104,8 @@ namespace HelloWorld
                 }
             } 
         }
-
-        private static void GetByteCountData(String title)
-        {
-            var utils = new Utils.ConvertBytes();
-
-            try
-            {
-                Encoding encoding = Encoding.GetEncoding("euc-kr");
-
-                int standardSize = Convert.ToInt32(SetParams("Split Byte Size"));
-                string requestText = SetParams("Text");
-
-                Boolean isOverSize = utils.IsStringOverByteSize(requestText, encoding, standardSize);
-                
-                string result = string.Empty;
-                if (isOverSize)
-                { 
-                    Boolean confirm = SetParams("continue splitString ?? y/n").ToLower() == "y" ? true : false;
-                    if (confirm) result = utils.SplitStringbyStandardSize(requestText, standardSize, encoding);
-                    requestText = result;
-                }
-                
-                int getByteSize = utils.GetByteCount(requestText, encoding);
-                Console.WriteLine("\n-----------------------------------------------------");
-                
-                log.PrintResult("Encoding", encoding.EncodingName,"");
-                log.PrintResult("Result", requestText, "(" + getByteSize.ToString() + " Bytes)");
-            }
-            catch (System.ArgumentException e)
-            {
-                e.StackTrace.ToString();
-            }
-            catch (Exception e)
-            {
-                e.StackTrace.ToString();
-            }
-        }
-
-        private static string SetParams(string header)
-        {
-            Console.Write(header + " : ");
-            var strRead = Console.ReadLine();
-            return strRead;
-        }
-
+         
+ 
         private static void ShowQueueContents(Queue<int> q, int count)
         { 
             lock (((ICollection)q).SyncRoot)
