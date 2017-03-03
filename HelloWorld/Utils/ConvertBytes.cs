@@ -8,14 +8,12 @@ namespace HelloWorld.Utils
     class ConvertBytes
     {
         private readonly Encoding _encoding;
-        private readonly LogDisplay _log;
-        private readonly int _maxByteSize;
+        private readonly LogDisplay _log; 
 
-        public ConvertBytes(Encoding encoding, int maxSize)
+        public ConvertBytes(Encoding encoding)
         {
             _log = new LogDisplay(this.GetType().Name);
             this._encoding = encoding;
-            this._maxByteSize = maxSize;
         }
 
         public int GetByteSize(string param)
@@ -23,17 +21,17 @@ namespace HelloWorld.Utils
             return _encoding.GetBytes(param).Length;
         }
 
-        private bool IsOverSized(string param)
+        public bool IsOverSized(string param, int maxByteSize)
         {
-            return GetByteSize(param) >= _maxByteSize;
+            return GetByteSize(param) >= maxByteSize;
         }
 
-        private bool IsConfirmed(string response)
+        public bool IsConfirmed(string response)
         {
             return response == "y" ? true : false;
         }
 
-        private string ConvertBytesToString(byte[] datas, int startIndex, int maxSize)
+        public string ConvertBytesToString(byte[] datas, int startIndex, int maxSize)
         {
             string result = _encoding.GetString(datas, startIndex, maxSize);
             int length = result.Length;
@@ -41,26 +39,6 @@ namespace HelloWorld.Utils
             if (result[length - 1].Equals('?'))
                 result = result.Substring(startIndex, length - 1);
             return result;
-        }
-
-        public void ResizeMonoData(string requestText)
-        {
-            try
-            {
-                if (!IsOverSized(requestText)) return;
-                if (!IsConfirmed(_log.SetCommendRead("Continue Resizing Data ?? Y/N ", "").ToLower())) return;
-
-                _log.Trace("Start Resizeing Data under " + _maxByteSize + " Bytes....", "");
-
-                Byte[] datas = _encoding.GetBytes(requestText);
-                string resultText = ConvertBytesToString(datas, 0, _maxByteSize);
-
-                _log.PrintResult(_encoding, resultText, GetByteSize(resultText));
-            }
-            catch (Exception e)
-            {
-                _log.Trace(e.ToString(), "");
-            }
         }
 
         private string SubstringH(string source, int start, int length)

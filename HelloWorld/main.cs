@@ -13,17 +13,16 @@ namespace HelloWorld
 { 
     class MainClass
     {
-        private readonly LogDisplay _log;
+        private static LogDisplay _log;
         public MainClass()
         {
-            _log = new LogDisplay(this.GetType().Name);
+           
         }
-
-        private static void Main(string[] args) {
-
+        private static readonly AppSettingsReader _reader = new AppSettingsReader();
+        private static void Main(string[] args) { 
             const string fileName = "TextFile1.txt";
-            const string projectPath = @"D:\3.Source\ConsoleProgram\HelloWorld";
-            const string sourcePath = @"D:\3.Source\ConsoleProgram\HelloWorld\files";
+            string projectPath = _reader.GetValue("projectPath", typeof(string)).ToString();
+            const string sourcePath = @"D:\3.Source\sample\ConsoleProgram\HelloWorld\files";
 
             while (true) {  
                 PrintLectures(); 
@@ -68,7 +67,7 @@ namespace HelloWorld
                     case "8":
                         var sourceFile = System.IO.Path.Combine(sourcePath, fileName);
                         ff.ReadDirectory(projectPath);
-                        ff.ReadFile(sourceFile);
+                        ff.Read(sourceFile);
                         break;
                     case "9": 
                         ff.Write();
@@ -103,9 +102,8 @@ namespace HelloWorld
                         continue;
                 }
             } 
-        }
-         
- 
+        } 
+
         private static void ShowQueueContents(Queue<int> q, int count)
         { 
             lock (((ICollection)q).SyncRoot)
@@ -170,27 +168,27 @@ namespace HelloWorld
 
         private static void PrintLectures()
         {
-            var tab = "\t\t\t\t\t\t\t";  
-            Console.WriteLine("\n"+ tab+"================== LIST ==================");
-                Console.WriteLine(tab+ " case \"0\" : Program" );
-                Console.WriteLine(tab+ " case \"1\" : DateDisplay");
-                Console.WriteLine(tab+ " case \"2\" : CallOtherClassMethod          ");
-                Console.WriteLine(tab+ " case \"3\" : GetSetProperty.GetSetMainClass");
-                Console.WriteLine(tab+ " case \"4\" : ObjCompare");
-                Console.WriteLine(tab+ " case \"5\" : UsingArray");
-                Console.WriteLine(tab+ " case \"6\" : UsingStructAndClass ");
-                Console.WriteLine(tab+ " case \"7\" : ConsoleLineRead     ");
-                Console.WriteLine(tab+ " case \"8\" : FileRead ");
-                Console.WriteLine(tab + "case \"9\" : FileWrite ");
-                Console.WriteLine(tab + "case \"10\" : Filecopy ");
-                Console.WriteLine(tab + "case \"11\" : FileMove ");
-                Console.WriteLine(tab + "case \"12\" : FileDelete ");
-                Console.WriteLine(tab + "case \"13\" : Thread ");
-                Console.WriteLine(tab + "case \"14\" : Thread SyncEvent");
-                Console.WriteLine(tab + "case \"15\" : ConvertToHex");
-                Console.WriteLine(tab+ " case \"q\" : exit");
-            Console.WriteLine(tab+"==========================================");
-            Console.WriteLine(tab+"please select Number :: ");
+            Console.Clear();
+            Console.WriteLine("================== LIST ==================");
+            Console.WriteLine( " case \"0\" : Program" );
+            Console.WriteLine( " case \"1\" : DateDisplay");
+            Console.WriteLine( " case \"2\" : CallOtherClassMethod          ");
+            Console.WriteLine( " case \"3\" : GetSetProperty.GetSetMainClass");
+            Console.WriteLine( " case \"4\" : ObjCompare");
+            Console.WriteLine( " case \"5\" : UsingArray");
+            Console.WriteLine( " case \"6\" : UsingStructAndClass ");
+            Console.WriteLine( " case \"7\" : ConsoleLineRead     ");
+            Console.WriteLine( " case \"8\" : FileRead ");
+            Console.WriteLine( "case \"9\" : FileWrite ");
+            Console.WriteLine( "case \"10\" : Filecopy ");
+            Console.WriteLine( "case \"11\" : FileMove ");
+            Console.WriteLine( "case \"12\" : FileDelete ");
+            Console.WriteLine( "case \"13\" : Thread ");
+            Console.WriteLine( "case \"14\" : Thread SyncEvent");
+            Console.WriteLine( "case \"15\" : ConvertToHex");
+            Console.WriteLine( " case \"q\" : exit");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("please select Number :: ");
         } 
     }
 }

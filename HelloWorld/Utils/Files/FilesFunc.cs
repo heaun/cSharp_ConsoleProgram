@@ -11,7 +11,7 @@ namespace HelloWorld
         string sourcePath = @"D:\3.Source\ConsoleProgram\HelloWorld\files";
         string targetPath = @"D:\3.Source\ConsoleProgram\HelloWorld\files\subDir"; 
  
-        public void ReadFile(String sourceFile){ 
+        public void Read(String sourceFile){ 
             var MyEncode = Encoding.GetEncoding("euc-kr");
             Console.WriteLine("myEncode.EncodingName = {0}", MyEncode.EncodingName);
 
@@ -46,7 +46,7 @@ namespace HelloWorld
             var sourceFile = System.IO.Path.Combine(sourcePath, fileName);
             var destFile   = System.IO.Path.Combine(targetPath, fileName);
 
-            if (!isFileExist(targetPath))
+            if (!IsFileExist(targetPath))
             {
                 System.IO.Directory.CreateDirectory(targetPath);
                 Console.WriteLine("targetPath : {0} \n CreateDirectory done", targetPath);
@@ -65,7 +65,7 @@ namespace HelloWorld
         }
 
         public void AllCopy() {
-            if (isFileExist(sourcePath))
+            if (IsFileExist(sourcePath))
             {
                 var files = System.IO.Directory.GetFiles(sourcePath);
                 foreach (var s in files)
@@ -92,7 +92,7 @@ namespace HelloWorld
   
             Console.WriteLine("file Move Start....");
             
-            if (!isFileExist(sourceFile))
+            if (!IsFileExist(sourceFile))
             { 
                 System.IO.File.Move(sourceFile, destFile);
                 //System.IO.Directory.Move(sourceFile, destFile);
@@ -106,7 +106,7 @@ namespace HelloWorld
             ReadDirectory(targetPath);
 
             Console.WriteLine("file Delete Start....");
-            if (isFileExist(destFile))
+            if (IsFileExist(destFile))
             {
                 System.IO.File.Delete(destFile);
                 Console.WriteLine("destFile : {0}", destFile);
@@ -165,7 +165,7 @@ namespace HelloWorld
         ReadDirectory(sourcePath); 
         }
 
-        private Boolean isFileExist(string sourcefile)
+        private Boolean IsFileExist(string sourcefile)
         {
             Console.WriteLine("Checking file..........");
             var result = false;
