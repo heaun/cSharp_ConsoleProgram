@@ -48,11 +48,10 @@ namespace HelloWorld.Monos
 
                     _log.Trace("Database Connection Success.", "");
                     
-                    _log.Trace("Database Reading..", "");
+                    _log.Trace("Database Reading..", "", true);
                     using (SqlCommand command = new SqlCommand(Sql, con))
                     using (SqlDataReader dataReader = command.ExecuteReader())
-                    {
-                        _log.GridProgressBar("");
+                    {  
                         while (dataReader.Read())
                         {
                             monoData = dataReader.GetString(0);
@@ -79,11 +78,10 @@ namespace HelloWorld.Monos
                 if (!cs.IsOverSized(requestText, MaxByteSize)) return;
                 if (!cs.IsConfirmed(_log.SetCommendRead("Continue Resizing Data ?? Y/N ", "").ToLower())) return;
 
-                _log.Trace("Start Resizeing Data under " + MaxByteSize + " Bytes....", "");
+                _log.Trace("Start Resizeing Data under " + MaxByteSize + " Bytes....", "", true);
 
                 Byte[] datas = Encoding.GetBytes(requestText);
                 string resultText = cs.ConvertBytesToString(datas, 0, MaxByteSize);
-                _log.GridProgressBar("");
                 _log.PrintResult(Encoding, resultText, cs.GetByteSize(resultText));
             }
             catch (Exception e)
